@@ -32,17 +32,6 @@ void Game::Reset()
 		brick.color = ConsoleColor::DarkCyan;
 		bricks.push_back(brick);
 	}
-	// For Testing
-	//for (int i = 0; i < 1; i++)
-	//{
-	//	brick.width = 10;
-	//	brick.height = 2;
-	//	brick.x_position = brick.x_position + 12;
-	//	brick.y_position = 5;
-	//	brick.doubleThick = true;
-	//	brick.color = ConsoleColor::DarkCyan;
-	//	bricks.push_back(brick);
-	//}
 }
 
 void Game::ResetBall()
@@ -90,7 +79,6 @@ void Game::Render() const
 	{
 		bricks[i].Draw();
 	}
-
 	Console::Lock(false);
 }
 
@@ -112,12 +100,12 @@ void Game::CheckCollision()
 			}
 		}
 	}
-
+	//Console::Lock(true);
 	// TODO #6 - If no bricks remain, pause ball and display victory text with R to reset
 	if (bricks.size() == 0)
 	{
 		ball.moving = false;
-		std::cout << "You win! Press 'R' to play again.";
+		std::cout << "\nYou win! Press 'R' to play again.";
 		system("pause");
 	}
 
@@ -130,7 +118,8 @@ void Game::CheckCollision()
 	if (paddle.y_position == ball.y_position)
 	{
 		ball.moving = false;
-		std::cout << "You lose! Press 'R' to reset.";
-
+		std::cout << "\nYou lose! Press 'R' to reset.";
+		system("pause");
 	}
+	//Console::Lock(false);
 }
